@@ -21,8 +21,20 @@ int connection1=18;
 int connection2=19;
 int connection3=20;
 int connection4=21;
-//following the design diagram2
-//valve HIGH=close LOW=open
+int lightcuring=22;
+int lightcuringvalve=23;
+int v1 = 24;
+int v2 = 25;
+int v3 = 26;
+/*
+following the design diagram2
+valve HIGH=close LOW=open
+24~26 Vacuum module
+22~23 control light curing
+18~21 checking whether filter connect
+17 power switch
+1~17 valve
+*/
 
 int lightcuring = 0;
 int v1 = 0;
@@ -37,37 +49,33 @@ int box6 = 0;
 int tx = 0;
 int rx = 0;
 
-#define v1 = A1;
-#define v2 = A2;
-#define v3 = A3;
-#define lightcuring = A4;
-#define box1 = A5;
-#define box2 = A6;
-#define box3 = A7;
-#define box4 = A8;
-#define box5 = A9;
-#define box6 = A10;
-#define tx = A11;
-#define rx = A12;
-#define boxa = A13;
-#define boxb = A14;
-#define boxc = A15;
-#define boxd = A16;
-#define boxe = A17;
-#define boxf = A18;
-#define filter1=A19;
-#define filter2=A20;
-#define filter3=A21;
-#define storage=A22;
-*/
-v1~v3（A1~3) are Vacuum module
+#define filter1=A0;
+#define filter2=A1;
+#define filter3=A2;
+#define storage=A3;
+#define box1 = A4;
+#define box2 = A5;
+#define box3 = A6;
+#define box4 = A7;
+#define box5 = A8;
+#define box6 = A9;
+#define boxa = A10;
+#define boxb = A11;
+#define boxc = A12;
+#define boxd = A13;
+#define boxe = A14;
+#define boxf = A15;
+
+/*
+v1~v3（A1~3) are Filter
 lightcuring (A4) is light curing in coalstorage
 box1~6 (A5~10) are Electrostatic cabin
 tx&rx(A11~12) are prepared for screen of coalstorage 
 boxa~e(A13~18) are sensors in Electrostatic cabin
 */
 void setup() {
-pinMode(A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,OUTPUT);
+pinMode(A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,OUTPUT);
+pinMode(A10,A11,A12,A13,A14,A15,INPUT);
 Serial.begin(9600);
 lcd.print("START")
 }
@@ -112,6 +120,7 @@ void loop() {
   analogWrite(256,box4);
   analogWrite(256,box5);
   analogWrite(256,box6);
+  digitalWrite(HIGH,v1);
   delay(60000);
   digitalWrite(LOW,valve1);
   digitalWrite(LOW,valve4);
@@ -128,6 +137,7 @@ void loop() {
   analogWrite(256,box4);
   analogWrite(256,box5);
   analogWrite(256,box6);
+  digitalWrite(HIGH,v2);
   delay(60000);
   digitalWrite(LOW,valve2);
   digitalWrite(LOW,valve5);
@@ -145,6 +155,7 @@ void loop() {
   analogWrite(256,box4);
   analogWrite(256,box5);
   analogWrite(256,box6);
+  digitalWrite(HIGH,v3);
   delay(60000);
   digitalWrite(LOW,valve3);
   digitalWrite(LOW,valve6);
@@ -161,6 +172,7 @@ void loop() {
   analogWrite(256,box3);
   analogWrite(256,box5);
   analogWrite(256,box6);
+  digitalWrite(HIGH,v1);
   delay(60000);
   digitalWrite(LOW,valve7);
   digitalWrite(LOW,valve10);
@@ -177,6 +189,7 @@ void loop() {
   analogWrite(256,box4);
   analogWrite(256,box5);
   analogWrite(256,box6);
+  digitalWrite(HIGH,v2);
   delay(60000);
   digitalWrite(LOW,valve8);
   digitalWrite(LOW,valve11);
@@ -193,6 +206,7 @@ void loop() {
   analogWrite(256,box4);
   analogWrite(256,box5);
   analogWrite(256,box3);
+  digitalWrite(HIGH,v3);
   delay(60000);
   digitalWrite(LOW,valve9);
   digitalWrite(LOW,valve12);
@@ -240,6 +254,8 @@ void loop() {
   digitalWrite(LOW,v1);
   digitalWrite(LOW,v2);
   digitalWrite(LOW,v3);
+  digitalWrite(LOW,lightcuringvalve);
+  digitalWrite(HIGH,lightcuring);
   if(connection4=LOW)
   delay(2000);
   else if{
