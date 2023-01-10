@@ -73,6 +73,21 @@ box1~6 (A5~10) are Electrostatic cabin
 tx&rx(A11~12) are prepared for screen of coalstorage 
 boxa~e(A13~18) are sensors in Electrostatic cabin
 */
+/*
+D1~D15 Control Electromagnetic Valve.
+A1~A3 Control Vaccum Pump of First Electrostatic Cabins.
+A4~A6 Control Vaccum Pump of Second Electrostatic Cabins.
+A7 Control Corona of First Electrostatic Cabins.
+A8~A10 Control Coronas of Second Electrostatic Cabins.
+A11 Control the UV lamp in Light Curing Module.
+A12 Control the valve of photopolymer.
+A13~17,A18~22,A23~27 Control the motors of filters.
+A28~A30,A31~A33 Control the power of Electrostatic Cabin.
+A34~A36,A37~A39 Detect the situation of Electrostatic Cabin.
+A40 Detect the volume of carbon in carbon storage.
+A41~A42,A43~A44,A45~A46 Check if filter have well connect.
+Tx,Rx Transmission data for LCD.
+*/
 void setup() {
 pinMode(A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,OUTPUT);
 pinMode(A10,A11,A12,A13,A14,A15,INPUT);
